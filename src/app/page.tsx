@@ -68,7 +68,7 @@ export default function Home() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{`https://${host}/${shortLink}`}
+							{`${host}/${shortLink}`}
 						</a>
 					</div>
 				)}
