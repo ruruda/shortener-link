@@ -10,8 +10,8 @@ export default function Home() {
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 		try {
-			const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
-			const response = await fetch(`${baseUrl}/api/link`, {
+			// const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+			const response = await fetch(`/api/link`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export default function Home() {
 			}
 
 			const data = await response.json();
-			const fullShortLink = `${baseUrl}/${data.data.shortLink}`;
+			const fullShortLink = `/${data.data.shortLink}`;
 			setShortLink(fullShortLink);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);

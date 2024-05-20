@@ -13,7 +13,7 @@ export default function ShortLinkPage() {
 			const fetchData = async () => {
 				try {
 					const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
-					const response = await fetch(`${baseUrl}/api/link/${shortLink}`);
+					const response = await fetch(`/api/link/${shortLink}`);
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
 					}
