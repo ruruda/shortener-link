@@ -24,7 +24,7 @@ export default function Home() {
 			}
 
 			const data = await response.json();
-			const fullShortLink = `${baseUrl}//${data.data.shortLink}`;
+			const fullShortLink = `${baseUrl}/${data.data.shortLink}`;
 			setShortLink(fullShortLink);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
@@ -62,7 +62,7 @@ export default function Home() {
 					<div className="mt-4 p-4 bg-blue-100 text-blue-700 rounded-md w-full text-center">
 						<p>Shortened Link:</p>
 						<a
-							href={`http://${shortLink}`}
+							href={`${shortLink}`}
 							className="text-blue-500 hover:underline"
 							target="_blank"
 							rel="noopener noreferrer"

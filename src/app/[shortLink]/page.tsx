@@ -28,6 +28,7 @@ export default function ShortLinkPage() {
 					} else {
 						window.location.href = longLink;
 					}
+          console.log(longLink)
 				} catch (error: any) {
 					setError(error.message);
 				} finally {
