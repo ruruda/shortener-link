@@ -10,7 +10,7 @@ export default function Home() {
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 		try {
-			// const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+			const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000';
 			const response = await fetch(`/api/link`, {
 				method: 'POST',
 				headers: {
@@ -24,8 +24,9 @@ export default function Home() {
 			}
 
 			const data = await response.json();
-			const fullShortLink = `/${data.data.shortLink}`;
+			const fullShortLink = `${data.data.shortLink}`;
 			setShortLink(fullShortLink);
+      setHost(baseUrl);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
 		}
@@ -67,7 +68,7 @@ export default function Home() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							{shortLink}
+							{`${host}/${shortLink}`}
 						</a>
 					</div>
 				)}
