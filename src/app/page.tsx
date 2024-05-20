@@ -10,13 +10,13 @@ export default function Home() {
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 		try {
-			const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+			const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 			const response = await fetch(`${baseUrl}/api/link`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ url }), // Mengirim body dalam format JSON
+				body: JSON.stringify({ url }),
 			});
 
 			if (!response.ok) {
@@ -24,7 +24,7 @@ export default function Home() {
 			}
 
 			const data = await response.json();
-			const fullShortLink = `http://${host}/${data.data.shortLink}`;
+			const fullShortLink = `${baseUrl}//${data.data.shortLink}`;
 			setShortLink(fullShortLink);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
