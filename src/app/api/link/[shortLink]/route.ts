@@ -13,7 +13,6 @@ export async function GET(request: Request, { params }: { params: { shortLink: s
 					shortLink: shortLink,
 				},
 			})
-			.withAccelerateInfo();
 		if (!link) return NextResponse.json(ResponseUser(false, 'Link not found', null));
 		return NextResponse.json(ResponseUser(true, 'Link fetched successfully', link));
 	} catch (error: any) {
