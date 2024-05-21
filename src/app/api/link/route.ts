@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { ResponseUser } from '@/models/response';
 import { generateShortLink } from '@/lib/generateShortLink';
 import { withAccelerate } from '@prisma/extension-accelerate';
@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 		const { url } = await request.json();
 		if (!url) return NextResponse.json(ResponseUser(false, 'Please enter a valid URL', null));
 
-		const existingLongLink = await prisma.$extends(withAccelerate()).link.findFirst({
+		const existingLongLink = await prisma.link.findFirst({
 			cacheStrategy: { swr: 60, ttl: 60 },
 			where: {
 				longLink: url,

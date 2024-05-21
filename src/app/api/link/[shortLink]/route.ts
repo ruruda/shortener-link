@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { ResponseUser } from '@/models/response';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 export async function GET(request: Request, { params }: { params: { shortLink: string } }) {
 	try {
 		const { shortLink } = params;
-		const link = await prisma.$extends(withAccelerate()).link.findFirst({
+		const link = await prisma.link.findFirst({
 			cacheStrategy: { swr: 60, ttl: 60 },
 			where: {
 				shortLink: shortLink,
