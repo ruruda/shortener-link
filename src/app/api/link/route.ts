@@ -8,14 +8,15 @@ export async function POST(request: Request) {
 		const { url } = await request.json();
 		if (!url) return NextResponse.json(ResponseUser(false, 'Please enter a valid URL', null));
 
-		const existingLongLink = await prisma.link
-			.findFirst({
-				cacheStrategy: { swr: 5 * 60, ttl: 2 * 60 * 60 },
-				where: {
-					longLink: url,
+		const existingLongLink = await prisma.link.findFirst({
+			where: {
+				longLink: {
+					equals: url,
 				},
-			})
-			.withAccelerateInfo();
+			},
+			cacheStrategy: { ttl: 2 * 60 * 60, swr: 5 * 60 },
+		});
+		console.log(existingLongLink);
 		if (existingLongLink)
 			return NextResponse.json(
 				ResponseUser(true, 'Link fetched successfully', existingLongLink)

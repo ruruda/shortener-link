@@ -23,10 +23,11 @@ export default function Home() {
 				throw new Error('Network response was not ok');
 			}
 
-			const data = await response.json();
-			const fullShortLink = `${data.data.shortLink}`;
+			const result = await response.json();
+			const fullShortLink = `${result.data.shortLink}`;
 			setShortLink(fullShortLink);
-      setHost(baseUrl);
+			console.log(result.data);
+			setHost(baseUrl);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
 		}
