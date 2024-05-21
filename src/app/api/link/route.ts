@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 		if (!url) return NextResponse.json(ResponseUser(false, 'Please enter a valid URL', null));
 
 		const existingLongLink = await prisma.link.findFirst({
-			cacheStrategy: { swr: 60, ttl: 60 },
+			cacheStrategy: { swr: 5 * 60, ttl: 2 * 60 * 60 },
 			where: {
 				longLink: url,
 			},

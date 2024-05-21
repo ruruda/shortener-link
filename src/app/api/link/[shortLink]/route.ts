@@ -7,7 +7,7 @@ export async function GET(request: Request, { params }: { params: { shortLink: s
 	try {
 		const { shortLink } = params;
 		const link = await prisma.link.findFirst({
-			cacheStrategy: { swr: 60, ttl: 60 },
+			cacheStrategy: { swr: 5 * 60, ttl: 2 * 60 * 60 },
 			where: {
 				shortLink: shortLink,
 			},
