@@ -8,18 +8,6 @@ export async function POST(request: Request) {
 		const { url } = await request.json();
 		if (!url) return NextResponse.json(ResponseUser(false, 'Please enter a valid URL', null));
 
-		const existingLongLink = await prisma.link.findFirst({
-			where: {
-				longLink: {
-					equals: url,
-				},
-			},
-		});
-		if (existingLongLink)
-			return NextResponse.json(
-				ResponseUser(true, 'Link fetched successfully', existingLongLink)
-			);
-
 		const shortUrl = generateShortLink(url);
 		const newLink = await prisma.link.create({
 			data: {
