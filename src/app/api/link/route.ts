@@ -16,7 +16,6 @@ export async function POST(request: Request) {
 			},
 			cacheStrategy: { ttl: 2 * 60 * 60, swr: 5 * 60 },
 		});
-		console.log(existingLongLink);
 		if (existingLongLink)
 			return NextResponse.json(
 				ResponseUser(true, 'Link fetched successfully', existingLongLink)
