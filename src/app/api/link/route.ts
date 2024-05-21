@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 			where: {
 				longLink: url,
 			},
-		});
+		}).withAccelerateInfo();
 		if (existingLongLink)
 			return NextResponse.json(
 				ResponseUser(true, 'Link fetched successfully', existingLongLink)
