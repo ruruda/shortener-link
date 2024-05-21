@@ -14,7 +14,6 @@ export async function POST(request: Request) {
 					equals: url,
 				},
 			},
-			cacheStrategy: { ttl: 2 * 60 * 60, swr: 5 * 60 },
 		});
 		if (existingLongLink)
 			return NextResponse.json(
