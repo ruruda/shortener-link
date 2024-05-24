@@ -1,15 +1,6 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Link` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "Link";
-
 -- CreateTable
 CREATE TABLE "links" (
-    "id" INT8 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "shortLink" CHAR(6) NOT NULL,
     "longLink" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,3 +8,9 @@ CREATE TABLE "links" (
 
     CONSTRAINT "links_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "links_id_key" ON "links"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "links_shortLink_key" ON "links"("shortLink");

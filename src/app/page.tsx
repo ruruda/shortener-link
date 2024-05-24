@@ -26,7 +26,6 @@ export default function Home() {
 			const result = await response.json();
 			const fullShortLink = `${result.data.shortLink}`;
 			setShortLink(fullShortLink);
-			console.log(result.data);
 			setHost(baseUrl);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
@@ -37,7 +36,16 @@ export default function Home() {
 		setUrl(event.target.value);
 	};
 
+	const prewarmingConnection = async () => {
+		try {
+			await fetch('/api/prewarming');
+		} catch (error: any) {
+			console.log('Error in prewarmingConnection: ', error.message);
+		}
+	};
+
 	useEffect(() => {
+		prewarmingConnection();
 		setHost(window.location.host);
 	}, []);
 
