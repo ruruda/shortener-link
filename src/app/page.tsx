@@ -26,7 +26,6 @@ export default function Home() {
 			const result = await response.json();
 			const fullShortLink = `${result.data.shortLink}`;
 			setShortLink(fullShortLink);
-			console.log(result.data);
 			setHost(baseUrl);
 		} catch (error: any) {
 			console.log('Error in POST /api/link: ', error.message);
